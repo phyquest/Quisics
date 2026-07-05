@@ -244,18 +244,19 @@ const nextSlideBtn = document.querySelector('.next-slide-btn');
 let currentSlide = 0;
 
 // 1. Fungsi Buka Popup Flashcard
+// 1. Fungsi Buka Popup Flashcard (DITUKAR UNTUK MENGELAKKAN RALAT NULL)
 if (flashcardBtn) {
     flashcardBtn.onclick = () => {
-        flashcardPopup.classList.add('active');
-        main.classList.add('active'); // Memberi kesan blur pada background web asal
+        if (flashcardPopup) flashcardPopup.classList.add('active');
+        if (main) main.classList.add('active'); // Hanya jalan jika 'main' wujud
     }
 }
 
-// 2. Fungsi Tutup Popup Flashcard
+// 2. Fungsi Tutup Popup Flashcard (DITUKAR UNTUK MENGELAKKAN RALAT NULL)
 if (closeFlashcardBtn) {
     closeFlashcardBtn.onclick = () => {
-        flashcardPopup.classList.remove('active');
-        main.classList.remove('active'); // Hilangkan kesan blur
+        if (flashcardPopup) flashcardPopup.classList.remove('active');
+        if (main) main.classList.remove('active'); // Hanya jalan jika 'main' wujud
     }
 }
 
@@ -283,6 +284,19 @@ if (nextSlideBtn && prevBtn) {
         changeSlide(currentSlide + 1);
     }
 
+    prevBtn.onclick = () => {
+        changeSlide(currentSlide - 1);
+    }
+}
+
+// 3. Pengaktifan Klik Butang Kiri & Kanan (Sila tambah ini di paling bawah)
+if (nextSlideBtn) {
+    nextSlideBtn.onclick = () => {
+        changeSlide(currentSlide + 1);
+    }
+}
+
+if (prevBtn) {
     prevBtn.onclick = () => {
         changeSlide(currentSlide - 1);
     }
