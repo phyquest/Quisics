@@ -230,3 +230,60 @@ function showResultBox(isTimesUp) {
         }
     }, speed);
 }
+
+// =======================================================
+// LOGIK INTERAKTIF POPUP FLASHCARD & SLIDER IMEDJ
+// =======================================================
+const flashcardBtn = document.querySelector('.flashcard-btn');
+const flashcardPopup = document.querySelector('.flashcard-popup');
+const closeFlashcardBtn = document.querySelector('.close-flashcard-btn');
+const slides = document.querySelectorAll('.slide');
+const prevBtn = document.querySelector('.prev-btn');
+const nextSlideBtn = document.querySelector('.next-slide-btn');
+
+let currentSlide = 0;
+
+// 1. Fungsi Buka Popup Flashcard
+if (flashcardBtn) {
+    flashcardBtn.onclick = () => {
+        flashcardPopup.classList.add('active');
+        main.classList.add('active'); // Memberi kesan blur pada background web asal
+    }
+}
+
+// 2. Fungsi Tutup Popup Flashcard
+if (closeFlashcardBtn) {
+    closeFlashcardBtn.onclick = () => {
+        flashcardPopup.classList.remove('active');
+        main.classList.remove('active'); // Hilangkan kesan blur
+    }
+}
+
+// 3. Fungsi Pertukaran Slide Gambar
+function changeSlide(index) {
+    // Buang kelas aktif dari gambar semasa
+    slides.forEach(slide => slide.classList.remove('active'));
+    
+    currentSlide = index;
+    
+    // Logik Infiniti (pusing semula kalau dah habis gambar)
+    if (currentSlide >= slides.length) {
+        currentSlide = 0;
+    } else if (currentSlide < 0) {
+        currentSlide = slides.length - 1;
+    }
+    
+    // Set gambar baru sebagai aktif
+    slides[currentSlide].classList.add('active');
+}
+
+// 4. Pengaktifan Klik Butang Kiri & Kanan
+if (nextSlideBtn && prevBtn) {
+    nextSlideBtn.onclick = () => {
+        changeSlide(currentSlide + 1);
+    }
+
+    prevBtn.onclick = () => {
+        changeSlide(currentSlide - 1);
+    }
+}
