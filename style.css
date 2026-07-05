@@ -444,3 +444,113 @@ body {
     background: #ff7597;
     color: #fff;
 }
+
+/* ==========================================
+   MOBILE & TABLET RESPONSIVE FIXES 
+   ========================================== */
+@media (max-width: 768px) {
+    body {
+        overflow-y: auto; /* Allows scrolling on smaller screens if content overflows */
+    }
+
+    /* Header & Navigation adjustments */
+    .header {
+        padding: 15px 5%;
+    }
+
+    .logo {
+        font-size: 24px;
+    }
+
+    .navbar a {
+        font-size: 15px;
+        margin-left: 15px;
+    }
+
+    /* Home Hero Section */
+    .home-content h1 {
+        font-size: 32px;
+        text-align: center;
+    }
+
+    .home-content p {
+        font-size: 14px;
+        padding: 0 10px;
+    }
+
+    /* Fixed Box Width Fixes (Crucial for Mobile) */
+    .popup-info, 
+    .quiz-section .quiz-box, 
+    .quiz-section .result-box {
+        width: 90%; /* Forces the boxes to fit within the screen bounds */
+        max-width: 420px; /* Ensures they don't get too wide on mid-sized screens */
+        padding: 15px 20px;
+    }
+
+    .popup-info h2 {
+        font-size: 32px;
+    }
+
+    .quiz-box h1 {
+        font-size: 24px;
+    }
+
+    .result-box h2 {
+        font-size: 38px;
+    }
+
+    /* Progress and Score UI */
+    .result-box .percentage-container {
+        width: 100%;
+        margin: 15px 0 25px;
+    }
+
+    .percentage-container .circular-progress {
+        width: 160px;
+        height: 160px;
+    }
+
+    .percentage-container .circular-progress::before {
+        width: 125px;
+        height: 125px;
+    }
+
+    .circular-progress .progress-value {
+        font-size: 36px;
+    }
+
+    .percentage-container .score-text {
+        font-size: 20px;
+    }
+
+    /* Buttons Alignment */
+    .result-box .buttons {
+        width: 100%;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .buttons button {
+        width: 120px;
+        margin: 0;
+        font-size: 14px;
+    }
+}
+
+/* Extra small devices (Phones down to 320px width) */
+@media (max-width: 360px) {
+    .header {
+        flex-direction: column; /* Stacks logo above nav links if screen is tiny */
+        gap: 10px;
+        position: relative;
+        padding: 15px;
+    }
+    
+    .main {
+        padding-top: 80px; /* Accounts for the stacked header */
+    }
+
+    .navbar a {
+        margin: 0 7px;
+    }
+}
