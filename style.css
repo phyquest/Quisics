@@ -446,66 +446,69 @@ body {
 }
 
 /* =======================================================
-   MOBILE & TABLET RESPONSIVE FIXES (Force Overrides)
+   MOBILE & TABLET RESPONSIVE FIXES (Universal Device Fix)
    ======================================================= */
 @media (max-width: 768px) {
     body {
-        overflow-y: auto !important; /* Allows scrolling if anything overflows vertically */
         overflow-x: hidden !important;
+        overflow-y: auto !important;
     }
 
-    /* Override the 200% width desktop layout on mobile */
+    /* Prevent the 200% width from breaking screen viewports */
     .container {
         width: 100% !important;
-        height: auto !important;
-        min-height: 100vh;
-        flex-direction: column !important;
+        height: 100vh !important;
+        overflow: hidden;
     }
 
-    /* Push the home screen into center view on mobile */
-    .home {
-        left: 0 !important;
-        width: 100% !important;
-        height: auto !important;
-        padding: 100px 20px 40px; /* Safe space below the header */
+    /* Shift the container properly on mobile when active */
+    .main.active .container {
+        transform: translateX(-100%); /* Maintain your sliding effect safely */
     }
 
-    .quiz-section {
-        left: 0 !important;
-        position: fixed !important;
-        top: 0;
+    /* Structure sections for small screens */
+    .home, .quiz-section {
         width: 100% !important;
         height: 100vh !important;
-        display: none; /* Desktop slides it; we toggle display states */
-    }
-    .quiz-section.active {
-        display: flex !important;
+        padding: 80px 20px 20px !important; /* Extra padding for the header */
+        box-sizing: border-box;
     }
 
-    /* Fixed Box Width Fixes (Stops the scrambling) */
+    /* Responsive boxes sizing */
     .popup-info, 
     .quiz-section .quiz-box, 
     .quiz-section .result-box {
-        width: 90% !important; 
-        max-width: 380px !important; 
-        left: 50% !important;
-        transform: translate(-50%, -50%) scale(1) !important;
-        padding: 15px 20px !important;
-    }
-    
-    .popup-info {
-        top: 50% !important;
+        width: 92% !important;
+        max-width: 380px !important;
+        padding: 20px 15px !important;
     }
 
-    /* Header & Navbar Adjustments */
+    /* Text size reductions so they fit mobile displays */
+    .home-content h1 {
+        font-size: 32px !important;
+    }
+
+    .home-content p {
+        font-size: 14px !important;
+    }
+
+    .popup-info h2 {
+        font-size: 28px !important;
+    }
+
+    .quiz-box h1 {
+        font-size: 22px !important;
+    }
+
+    /* Header & Navigation fixes */
     .header {
         padding: 15px 5% !important;
-        background: rgba(0, 0, 0, 0.7) !important; /* Makes header readable over background images */
-        backdrop-filter: blur(5px);
+        background: rgba(14, 5, 27, 0.9) !important; /* Solid background on mobile */
+        backdrop-filter: blur(10px);
     }
 
     .logo {
-        font-size: 24px !important;
+        font-size: 22px !important;
     }
 
     .navbar a {
@@ -513,52 +516,51 @@ body {
         margin-left: 15px !important;
     }
 
-    /* Text Adjustments */
-    .home-content h1 {
-        font-size: 32px !important;
-        text-align: center;
+    /* Progress UI Adjustments */
+    .percentage-container {
+        flex-direction: column !important;
+        gap: 15px;
     }
 
-    .home-content p {
-        font-size: 14px !important;
-        padding: 0 10px;
-    }
-
-    /* Progress UI Scaling down slightly for mobile dimensions */
     .percentage-container .circular-progress {
-        width: 150px !important;
-        height: 150px !important;
-    }
-    .percentage-container .circular-progress::before {
-        width: 120px !important;
-        height: 120px !important;
-    }
-    .circular-progress .progress-value {
-        font-size: 32px !important;
-    }
-    .percentage-container .score-text {
-        font-size: 20px !important;
+        width: 130px !important;
+        height: 130px !important;
     }
 
-    /* Button Layouts */
+    .percentage-container .circular-progress::before {
+        width: 105px !important;
+        height: 105px !important;
+    }
+
+    .circular-progress .progress-value {
+        font-size: 28px !important;
+    }
+
+    /* Quiz answers option layout fixes */
+    .option-list .option {
+        padding: 10px !important;
+        font-size: 14px !important;
+    }
+
+    /* Alignment adjustments for result footer actions */
     .result-box .buttons {
-        width: 100%;
-        justify-content: center;
         gap: 10px;
     }
+
     .buttons button {
-        width: 120px !important;
-        margin: 0 !important;
+        width: 130px !important;
         font-size: 14px !important;
     }
 }
 
-/* Tiny Screen Support */
-@media (max-width: 380px) {
+/* Tiny Screen Fixes (e.g., iPhone SE) */
+@media (max-width: 360px) {
     .header {
         flex-direction: column !important;
-        gap: 8px;
+        gap: 5px;
+        padding: 10px !important;
     }
+    
     .navbar a {
         margin: 0 8px !important;
     }
