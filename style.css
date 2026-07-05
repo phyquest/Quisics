@@ -445,112 +445,121 @@ body {
     color: #fff;
 }
 
-/* ==========================================
-   MOBILE & TABLET RESPONSIVE FIXES 
-   ========================================== */
+/* =======================================================
+   MOBILE & TABLET RESPONSIVE FIXES (Force Overrides)
+   ======================================================= */
 @media (max-width: 768px) {
     body {
-        overflow-y: auto; /* Allows scrolling on smaller screens if content overflows */
+        overflow-y: auto !important; /* Allows scrolling if anything overflows vertically */
+        overflow-x: hidden !important;
     }
 
-    /* Header & Navigation adjustments */
+    /* Override the 200% width desktop layout on mobile */
+    .container {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 100vh;
+        flex-direction: column !important;
+    }
+
+    /* Push the home screen into center view on mobile */
+    .home {
+        left: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        padding: 100px 20px 40px; /* Safe space below the header */
+    }
+
+    .quiz-section {
+        left: 0 !important;
+        position: fixed !important;
+        top: 0;
+        width: 100% !important;
+        height: 100vh !important;
+        display: none; /* Desktop slides it; we toggle display states */
+    }
+    .quiz-section.active {
+        display: flex !important;
+    }
+
+    /* Fixed Box Width Fixes (Stops the scrambling) */
+    .popup-info, 
+    .quiz-section .quiz-box, 
+    .quiz-section .result-box {
+        width: 90% !important; 
+        max-width: 380px !important; 
+        left: 50% !important;
+        transform: translate(-50%, -50%) scale(1) !important;
+        padding: 15px 20px !important;
+    }
+    
+    .popup-info {
+        top: 50% !important;
+    }
+
+    /* Header & Navbar Adjustments */
     .header {
-        padding: 15px 5%;
+        padding: 15px 5% !important;
+        background: rgba(0, 0, 0, 0.7) !important; /* Makes header readable over background images */
+        backdrop-filter: blur(5px);
     }
 
     .logo {
-        font-size: 24px;
+        font-size: 24px !important;
     }
 
     .navbar a {
-        font-size: 15px;
-        margin-left: 15px;
+        font-size: 14px !important;
+        margin-left: 15px !important;
     }
 
-    /* Home Hero Section */
+    /* Text Adjustments */
     .home-content h1 {
-        font-size: 32px;
+        font-size: 32px !important;
         text-align: center;
     }
 
     .home-content p {
-        font-size: 14px;
+        font-size: 14px !important;
         padding: 0 10px;
     }
 
-    /* Fixed Box Width Fixes (Crucial for Mobile) */
-    .popup-info, 
-    .quiz-section .quiz-box, 
-    .quiz-section .result-box {
-        width: 90%; /* Forces the boxes to fit within the screen bounds */
-        max-width: 420px; /* Ensures they don't get too wide on mid-sized screens */
-        padding: 15px 20px;
-    }
-
-    .popup-info h2 {
-        font-size: 32px;
-    }
-
-    .quiz-box h1 {
-        font-size: 24px;
-    }
-
-    .result-box h2 {
-        font-size: 38px;
-    }
-
-    /* Progress and Score UI */
-    .result-box .percentage-container {
-        width: 100%;
-        margin: 15px 0 25px;
-    }
-
+    /* Progress UI Scaling down slightly for mobile dimensions */
     .percentage-container .circular-progress {
-        width: 160px;
-        height: 160px;
+        width: 150px !important;
+        height: 150px !important;
     }
-
     .percentage-container .circular-progress::before {
-        width: 125px;
-        height: 125px;
+        width: 120px !important;
+        height: 120px !important;
     }
-
     .circular-progress .progress-value {
-        font-size: 36px;
+        font-size: 32px !important;
     }
-
     .percentage-container .score-text {
-        font-size: 20px;
+        font-size: 20px !important;
     }
 
-    /* Buttons Alignment */
+    /* Button Layouts */
     .result-box .buttons {
         width: 100%;
         justify-content: center;
         gap: 10px;
     }
-
     .buttons button {
-        width: 120px;
-        margin: 0;
-        font-size: 14px;
+        width: 120px !important;
+        margin: 0 !important;
+        font-size: 14px !important;
     }
 }
 
-/* Extra small devices (Phones down to 320px width) */
-@media (max-width: 360px) {
+/* Tiny Screen Support */
+@media (max-width: 380px) {
     .header {
-        flex-direction: column; /* Stacks logo above nav links if screen is tiny */
-        gap: 10px;
-        position: relative;
-        padding: 15px;
+        flex-direction: column !important;
+        gap: 8px;
     }
-    
-    .main {
-        padding-top: 80px; /* Accounts for the stacked header */
-    }
-
     .navbar a {
-        margin: 0 7px;
+        margin: 0 8px !important;
     }
 }
